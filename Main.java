@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
+	private final static String chem= "/home/vmignot/Bureau/MyMove/bD.xlsx";
 	@Override
 	public void start(Stage primaryStage) {
 		try {

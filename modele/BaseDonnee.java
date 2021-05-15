@@ -1,11 +1,11 @@
 package application.modele;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import application.Exceptions.PasExpo;
-import application.Exceptions.PasFich;
 
 public class BaseDonnee {
 
@@ -21,17 +21,9 @@ public class BaseDonnee {
 	}
 	
 	public void ajoutP(Personne p) {
-		if(!dejaDansListe(p))
-			this.liste.add(p);
+		this.liste.add(p);
 	}
 	
-	private boolean dejaDansListe(Personne p) {
-		for(Personne p2: liste) {
-			if(p2.equals(p))
-				return true;
-		}
-		return false;
-	}
 	public ArrayList<Personne> getGens(){
 		return this.liste;
 	}
@@ -46,14 +38,14 @@ public class BaseDonnee {
 			this.createur.creerPdf(chemin, p);
 	}
 	
-	public void envoiPdfs(String chemin, String mail, String mdp, String objet, String corps) throws Exception {
+	public void envoiPdfs(String chemin, String mail, String mdp, String corps) throws Exception {
 		if(this.liste.isEmpty())
 			throw new PasExpo();
 		for(Personne p: liste) {
 			try {
-				eM.envoiMail(mail,mdp, p.getMail(), chemin+"\\"+p.getNumAdh()+" "+p.getNom()+" "+p.getPrenom()+".pdf",objet, corps);
-			}catch(PasFich e) {
-				System.out.println("Probleme de lecture de fichier");
+				eM.envoiMail(mdp, p.getMail(), chemin+"/"+p.getNumAdh()+" "+ p.getNom()+" "+ p.getPrenom()+".pdf");
+			}catch(Exception e) {
+				
 			}
 		}
 	}

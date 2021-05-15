@@ -1,6 +1,7 @@
 package application.modele;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -14,9 +15,9 @@ public class RemplirExcel {
 	private BaseDonnee bd;
 	public RemplirExcel(BaseDonnee bd) {
 		this.bd=bd;
+		//this.bd.ajoutP(new Personne(1, "0", "MIGNOT", "Vincent", "test", null, null, null, null, null));
 	}
 	
-	@SuppressWarnings("resource")
 	public void RemplirAvecPers(String nomFich) throws IOException {
 		FileInputStream file = new FileInputStream(nomFich);
 		XSSFWorkbook workbook = new XSSFWorkbook(file);

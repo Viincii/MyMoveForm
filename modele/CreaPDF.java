@@ -2,9 +2,14 @@ package application.modele;
 
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.net.MalformedURLException;
+import java.net.URL;
 
+import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.io.image.ImageType;
+import com.itextpdf.io.image.PngImageData;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
@@ -13,6 +18,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 
 public class CreaPDF {
@@ -26,13 +32,13 @@ public class CreaPDF {
 	}
 	
 	public void creerPdf(String chemin, Personne p) throws FileNotFoundException, MalformedURLException {
-		this.writer=new PdfWriter(chemin+"\\"+p.getNumAdh()+" "+p.getNom()+" "+p.getPrenom()+".pdf");
+		this.writer=new PdfWriter(chemin+"/"+p.getNumAdh()+" "+p.getNom()+" "+p.getPrenom()+".pdf");
 		this.docPdf = new PdfDocument(this.writer);
 		PageSize pageSize = PageSize.A4;
 		this.doc = new Document(docPdf , PageSize.A4);
 		
 		PdfCanvas canvas = new PdfCanvas(docPdf.addNewPage());
-		canvas.addImageFittedIntoRectangle(ImageDataFactory.create("Images\\fond.png"), pageSize, false);
+		canvas.addImageFittedIntoRectangle(ImageDataFactory.create("Images/fond.png"), pageSize, false);
 		
 		if(p.getNumAdh()!=null)
 			ajoutePara(p.getNumAdh(), 680, 410);

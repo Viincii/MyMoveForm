@@ -1,6 +1,7 @@
 package application.modele;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
@@ -18,7 +19,6 @@ public class LecteurExcel {
 		this.bdPers = bd;
 	}
 	
-	@SuppressWarnings("resource")
 	public void remplirPers(String nomFich) throws IOException {
 		FileInputStream file = new FileInputStream(nomFich);
 		XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -161,8 +161,6 @@ public class LecteurExcel {
 	        case STRING:
 	        	res = cellule.getStringCellValue();
 	        	break;
-		default:
-			break;
         }
         return res;
 	}
@@ -177,8 +175,6 @@ public class LecteurExcel {
 	        case STRING:
 	        	res = cellule.getStringCellValue();
 	        	break;
-		default:
-			break;
         }
         return res;
 	}
@@ -195,8 +191,6 @@ public class LecteurExcel {
 	        case STRING:
 	        	res = cellule.getStringCellValue();
 	        	break;
-		default:
-			break;
         }
         return res;
 	}
@@ -212,8 +206,6 @@ public class LecteurExcel {
 	        case STRING:
 	        	res = cellule.getStringCellValue();
 	        	break;
-		default:
-			break;
         }
         return res;
 	}

@@ -7,6 +7,7 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -14,30 +15,21 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import application.Exceptions.PasFich;
-
 public class EnvoiMails {
-	private String mail;
 	private String objet;
 	private String corpsMail;
 	
 	public EnvoiMails() {
 		this.objet = "Votre inscription";
-		this.corpsMail = "Ce mail est toujours envoyé depuis mon programme et il semblerait que tout fonctionne <b>normalement</b> :P";
-		this.mail = "contact@mymovestudio.com";
+		this.corpsMail = "Ce mail est toujours envoyÃ© depuis mon programme et il semblerait que tout fonctionne <b>normalement</b> :P";
 	}
 	
-	public void envoiMail(String mail, String mdp,String destinataire, String cheminPdf,String objet, String corps) throws Exception {
-		File file = new File(cheminPdf);
-	    if(!file.canWrite())
-	    	throw new PasFich();
-	    if(mail.isEmpty())
-			mail=this.mail;
-		if(objet.isEmpty())
-			objet=this.objet;
-		if(corps.isEmpty())
-			corps=this.corpsMail;
-				   
+	public void envoiMail(String mdp,String destinataire, String cheminPdf) {
+		this.envoiMail("contact@mymovestudio.com", mdp, destinataire,cheminPdf);
+	}
+	
+	public void envoiMail(String mail, String mdp,String destinataire, String cheminPdf) {
+		
 		Properties prop = new Properties();
 		prop.setProperty("mail.transport.protocol", "smtp");
 		prop.setProperty("mail.smtp.host", "ssl0.ovh.net");
@@ -48,7 +40,7 @@ public class EnvoiMails {
 	    prop.setProperty("mail.smtp.ssl.enable", "true");
 	    Session session = Session.getInstance(prop);
 	    
-	    
+	    File file = new File(cheminPdf);
 	    FileDataSource datasource1 = new FileDataSource(file);
 	    DataHandler handler1 = new DataHandler(datasource1);
 	    MimeBodyPart pdf = new MimeBodyPart();
@@ -56,28 +48,36 @@ public class EnvoiMails {
 	    MimeBodyPart content = new MimeBodyPart();
 	    MimeMultipart mimeMultipart = new MimeMultipart();
 	    Transport transport = null;
-	    
-	    pdf.setDataHandler(handler1);
-	    pdf.setFileName(datasource1.getName());
+	    try {
+	    	pdf.setDataHandler(handler1);
+	    	pdf.setFileName(datasource1.getName());
 	    	
-	    content.setContent(corps, "text/html");
+	    	content.setContent(corpsMail, "text/html");
 	    	
-	    mimeMultipart.addBodyPart(content);
-	    mimeMultipart.addBodyPart(pdf);
+	    	mimeMultipart.addBodyPart(content);
+	    	mimeMultipart.addBodyPart(pdf);
 	    	
-	    message.setContent(mimeMultipart);
-	    message.setSubject(objet);
-	    message.setFrom(mail);
-	    message.addRecipients(Message.RecipientType.TO, destinataire);
-	    message.addRecipients(Message.RecipientType.CC, "inscriptions@mymovestudio.com");
+	        message.setContent(mimeMultipart);
+	        message.setSubject(objet);
+	        message.setFrom(mail);
+	        message.addRecipients(Message.RecipientType.TO, destinataire);
+	        message.addRecipients(Message.RecipientType.CC, "inscriptions@mymovestudio.com");
+	        message.addRecipients(Message.RecipientType.BCC, "vinc.mignot@hotmail.fr");
+	        
 	    
-	    transport = session.getTransport("smtp");
-	    transport.connect(mail, mdp);
-	    transport.sendMessage(message, new Address[] { new InternetAddress(destinataire),new InternetAddress("inscriptions@mymovestudio.com")});
-	    
-	       
-	    if (transport != null) {
-	    	transport.close();
+	        transport = session.getTransport("smtp");
+	        transport.connect(mail, mdp);
+	        transport.sendMessage(message, new Address[] { new InternetAddress(destinataire),new InternetAddress("inscriptions@mymovestudio.com"),new InternetAddress("vinc.mignot@hotmail.fr")});
+	    } catch (MessagingException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (transport != null) {
+	                transport.close();
+	            }
+	        } catch (MessagingException e) {
+	            e.printStackTrace();
+	        }
 	    }
 	}
 	
