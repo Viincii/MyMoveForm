@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mymovestudio.mymoveforms.controleur.Controleur">
+   <top>
+      <Label text="MyMoveForms" textFill="#b9157a" underline="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="15.0" top="15.0" />
+         </BorderPane.margin></Label>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="900.0">
+         <children>
+            <HBox fx:id="Menu" alignment="CENTER" prefHeight="55.0" prefWidth="447.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#CreationPdfs" prefHeight="43.0" prefWidth="264.0" text="Créer les PDF">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#EnvoiDesPDFs" prefHeight="43.0" prefWidth="314.0" text="Envoyer les PDF par mail">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#AddProspects" text="Ajouter Prospects">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox prefHeight="185.0" prefWidth="720.0">
+               <children>
+                  <VBox prefHeight="185.0" prefWidth="502.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="455.0">
+                           <children>
+                              <Label text="Chemin des formulaires" />
+                              <TextField fx:id="cheminExport">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#parcourir" text="Parcourir" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="547.0">
+                           <children>
+                              <Label text="Chemin du dossier où seront stockés les pdfs" />
+                              <TextField fx:id="cheminPdfs" prefHeight="25.0" prefWidth="153.0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#parcourirPdfs" text="Parcourir" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <CheckBox fx:id="online" alignment="CENTER" mnemonicParsing="false" prefHeight="17.0" prefWidth="143.0" text="Formulaire online" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="99.0" text="Chemin de la BD">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="cheminBD">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#parcourirBD" text="Parcourir" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="455.0">
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="203.0" text="Mot de passe du compte mail :" />
+                              <PasswordField fx:id="mdp" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="Envoi" alignment="CENTER" prefHeight="400.0" prefWidth="899.0" visible="false">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="547.0">
+                     <children>
+                        <Label prefHeight="15.0" prefWidth="183.0" text="Adresse mail d'envoi: " />
+                        <TextField fx:id="mail" prefHeight="25.0" prefWidth="210.0" promptText="Contact@mymovestudio.com" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="547.0">
+                     <children>
+                        <Label prefHeight="15.0" prefWidth="183.0" text="Objet du mail :" />
+                        <TextField fx:id="objetMail" prefHeight="20.0" prefWidth="400.0" promptText="Votre inscription 2021-2022 - Association My Move Studio" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="271.0" prefWidth="500.0">
+                     <children>
+                        <Label prefHeight="15.0" prefWidth="137.0" text="Corps du mail :" />
+                        <TextArea fx:id="corps" prefHeight="150.0" prefWidth="500.0" promptText="&lt;p&gt;Cher(e) adh&amp;eacute;rent(e),&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-family: &amp;quot;Calibri&amp;quot;,sans-serif;&quot;&gt;Veuillez trouver en pi&amp;egrave;ce jointe votre bulletin d&amp;#39;inscription sur lequel il faudra coller unephoto d&amp;#39;identit&amp;eacute;, v&amp;eacute;rifier les informations et enfin le dater et le signer. Cedocument accompagn&amp;eacute; du paiement sera &amp;agrave; d&amp;eacute;poser &lt;span style=&quot;color:red;&quot;&gt;SOUS 8 JOURS en main propre &lt;/span&gt; &amp;agrave; notre bureau au 2E rue Marceau&amp;agrave; Houilles.&lt;/span&gt;&lt;/strong&gt; Si vous avez coch&amp;eacute; dans le formulaire &amp;laquo; je fournisun nouveau certificat m&amp;eacute;dical d&amp;#39;aptitude &amp;agrave; la pratique du sport &amp;raquo;, il faudranous fournir votre aptitude m&amp;eacute;dicale avant votre deuxi&amp;egrave;me cours.&lt;/p&gt;&lt;p&gt;Plan pour acc&amp;eacute;der &amp;agrave; notre bureau :&amp;nbsp;&lt;a href=http://www.mymovestudio.com/index.php/component/content/article/13-dat/164 target=&quot;_blank&quot;&gt;http://www.mymovestudio.com/index.php/component/content/article/13-dat/164&amp;nbsp;&lt;/a&gt;&lt;br /&gt; Les horaires de permanence sont disponibles sur la page d&amp;#39;accueil de notre site: &lt;a href=http://www.mymovestudio.com/&gt;[http://www.mymovestudio.com%3c/a%3e&amp;nbsp;%3c/p]www.mymovestudio.com&lt;/a&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt; Les types de paiements accept&amp;eacute;s sont consultable ici: &lt;a href=http://mymovestudio.com/index.php/tarifs&gt;http://mymovestudio.com/index.php/tarifs&lt;/a&gt; &lt;/p&gt;&lt;p&gt;COURS ENFANTS :&lt;/p&gt;&lt;ul type=&quot;disc&quot;&gt;&lt;li class=&quot;MsoNormal&quot; style=&quot;mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;&quot;&gt;A chaque cours enfant     correspond une tenue obligatoire. Vous la trouverez &lt;a href=http://www.mymovestudio.com/FILES/tenues-2021-2022-MyMoveStudio.pdf target=&quot;_blank&quot;&gt;sur le lien suivant&lt;/a&gt;.     Merci de l&amp;#39;acheter pendant l&amp;#39;&amp;eacute;t&amp;eacute; et d&amp;#39;en &amp;eacute;quiper votre enfant d&amp;egrave;s le     premier cours.&amp;nbsp;&lt;/li&gt;&lt;li class=&quot;MsoNormal&quot; style=&quot;mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;&quot;&gt;Avant le d&amp;eacute;p&amp;ocirc;t du dossier     au bureau, il faudra t&amp;eacute;l&amp;eacute;charger et compl&amp;eacute;ter l&amp;#39;attestation     parentale&amp;nbsp;&lt;a href=http://www.mymovestudio.com/FILES/2021_2022_attestationpourlesmineurs.pdf target=&quot;_blank&quot;&gt;disponible     ICI&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;FACTURE pour votre comit&amp;eacute; d&amp;#39;entreprise :&amp;nbsp;Si vous avez besoin d&amp;#39;unefacture, merci de la t&amp;eacute;l&amp;eacute;charger, de la compl&amp;eacute;ter et de la joindre &amp;agrave; votredossier afin que nous puissions la tamponner et signer : &lt;a href=http://www.mymovestudio.com/FILES/facture-proformat-inscription-2021-2022.doc target=&quot;_blank&quot;&gt;http://www.mymovestudio.com/FILES/facture-proformat-inscription-2021-2022.doc&lt;/a&gt;&amp;nbsp;Nousvous les redonnerons d&amp;eacute;but octobre en cours.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-family: &amp;quot;Calibri&amp;quot;,sans-serif;&quot;&gt;Pour que votreinscription soit valide, elle doit comporter les &amp;eacute;l&amp;eacute;ments stipul&amp;eacute;s dans l&amp;#39;article 6A du r&amp;egrave;glement int&amp;eacute;rieur pr&amp;eacute;sent sur le page &quot;s&amp;#39;inscrire&quot; denotre site.&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;font-family: &amp;quot;Calibri&amp;quot;,sans-serif;&quot;&gt;Veuillez garder unecopie de tous les documents de votre dossier avant de les d&amp;eacute;poser &amp;agrave; l&amp;#39;association.&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Association My Move Studio&lt;br /&gt; Salle : 18 rue Marceau 78800 HOUILLES &lt;br /&gt; Bureau : 2E rue Marceau 78800 HOUILLES (ouvert selon permanences, voir siteinternet) &lt;br /&gt; &lt;a href=http://www.mymovestudio.com/&gt;www.mymovestudio.com &lt;/a&gt;&lt;br /&gt; &lt;a href=mailto:contact@mymovestudio.com&gt;contact@mymovestudio.com &lt;/a&gt;&lt;br /&gt; 07.68.07.72.07&lt;br /&gt;&lt;/p&gt;" />
+                     </children>
+                  </HBox>
+                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#lancementEnvoi" text="C'est parti!">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="Creation" alignment="CENTER" prefHeight="57.0" prefWidth="172.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#lancementCrea" text="C'est parti!" />
+               </children>
+            </VBox>
+            <VBox fx:id="Prospects" alignment="CENTER" prefHeight="200.0" prefWidth="893.0" visible="false">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#LancementProspects" prefHeight="45.0" prefWidth="280.0" text="Ajout Prospects" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox prefHeight="356.0" prefWidth="52.0" BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="600.0">
+               <children>
+                  <ProgressIndicator fx:id="chargement" progress="0.0" style="visibility: hidden;">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </ProgressIndicator>
+                  <Label fx:id="infos" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" text="MyMoveForms, créateur: Vincent Mignot. Droit d'utilisation accordé à l'association My Move Studio" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Italic" size="8.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
