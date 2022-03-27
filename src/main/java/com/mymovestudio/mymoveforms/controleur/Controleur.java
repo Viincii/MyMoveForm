@@ -129,9 +129,9 @@ public class Controleur implements Initializable{
 				chargement.setProgress(50);
 				this.rE.RemplirAvecPers(this.cheminBD.getText());
 	    		chargement.setProgress(100);
-				this.infos.setText("C'est fini! Tout c'est bien pass�! Les PDF sont dans le dossier donn� au dessus.");
+				this.infos.setText("C'est fini! Tout c'est bien passé! Les PDF sont dans le dossier donné au dessus.");
 				if(bd.notifNecessaire()) {
-					this.infos.setText("Une notification a �t� envoy� par mail.");
+					this.infos.setText("Une notification a été envoyé par mail.");
 					this.bd.envoiNotif(mdp.getText(), "vinc.mignot@hotmail.fr"/*"contact@mymovestudio.com"*/);
 				}
 				this.bd.viderBd();
@@ -141,20 +141,20 @@ public class Controleur implements Initializable{
     		}
 		}
     	catch (IOException e){
-    		this.infos.setText("Il a eu une erreur de cr�ation de PDF.");
+    		this.infos.setText("Il a eu une erreur de création de PDF.");
     	}
     	catch (IllegalStateException e) {
-    		this.infos.setText("Un probl�me de format est survenu, merci de bien v�rifier la base et l'export");
+    		this.infos.setText("Un problème de format est survenu, merci de bien vérifier la base et l'export");
     	}
     	catch (CheminVide e) {
-    		this.infos.setText("Au moins un des champs n'est pas renseign�.");
+    		this.infos.setText("Au moins un des champs n'est pas renseigné.");
     	}
     	catch (AuthenticationFailedException e) {
 			this.infos.setText("Le mot de passe saisi semble incorrect.");
 		}
     	catch (Exception e) {
     		e.printStackTrace();
-			this.infos.setText("Une erreur impr�vue est apparue, veuillez v�rifier les chemins renseign�s et la coh�rence des donn�es.\n Si le probl�me persiste, merci de contacter votre d�veloppeur.");
+			this.infos.setText("Une erreur imprévue est apparue, veuillez vérifier les chemins renseignés et la cohérence des données.\n Si le problème persiste, merci de contacter votre développeur.");
 		}
     }
     
@@ -174,15 +174,15 @@ public class Controleur implements Initializable{
     		chargement.setProgress(100);
     		
 		} catch (PasExpo e) {
-			this.infos.setText("Veuillez renseigner le champ export, la base de donn�e est actuellement vide");
+			this.infos.setText("Veuillez renseigner le champ export, la base de donnée est actuellement vide");
 		} catch (PasFich e) {
- 			this.infos.setText("Probl�me d'ouverture de fichiers.");
+ 			this.infos.setText("Problème d'ouverture de fichiers.");
 		} catch (PasMdp e) {
 			this.infos.setText("Veuillez renseigner le mot de passe.");
 		}catch (AuthenticationFailedException e) {
 			this.infos.setText("Le mot de passe saisi semble incorrect.");
 		} catch (Exception e) {
-			this.infos.setText("Une erreur impr�vue est apparue, veuillez v�rifier les chemins renseign�s et la coh�rence des donn�es.\n Si le probl�me persiste, merci de contacter votre d�veloppeur.");
+			this.infos.setText("Une erreur imprévue est apparue, veuillez vérifier les chemins renseignés et la cohérence des données.\n Si le problème persiste, merci de contacter votre développeur.");
 		}
     }
     
@@ -204,22 +204,22 @@ public class Controleur implements Initializable{
     		chargement.setProgress(100);
     		this.infos.setText("Fini!");
     		if(bd.notifNecessaire()) {
-				this.infos.setText("Une notification a �t� envoy� par mail.");
+				this.infos.setText("Une notification a été envoyé par mail.");
 				this.bd.envoiNotif(mdp.getText(), "vinc.mignot@hotmail.fr"/*"contact@mymovestudio.com"*/);
 			}
     		this.bd.viderBd();
     	}
     	catch (IllegalStateException e) {
-    		this.infos.setText("Un probl�me de format est survenu, merci de bien v�rifier la base et l'export");
+    		this.infos.setText("Un problème de format est survenu, merci de bien vérifier la base et l'export");
     	}
     	catch (CheminVide e) {
-    		this.infos.setText("Au moins un des champs n'est pas renseign�.");
+    		this.infos.setText("Au moins un des champs n'est pas renseigné.");
     	}
     	catch (AuthenticationFailedException e) {
 			this.infos.setText("Le mot de passe saisi semble incorrect.");
 		}
     	catch(Exception e) {
-    		this.infos.setText("Une erreur s'est produite, v�rifier que le fichier est bien ferm� et le chemin correct");
+    		this.infos.setText("Une erreur s'est produite, vérifier que le fichier est bien fermé et le chemin correct");
     	}
     }
     

@@ -212,15 +212,15 @@ public class EnvoiMails {
 	    MimeMultipart mimeMultipart = new MimeMultipart();
 	    Transport transport = null;
 	    
-	    String corps= "Voici la liste des personnes en double dans la base : <br>";
+	    StringBuilder corps= new StringBuilder("Voici la liste des personnes en double dans la base : <br>");
 	    
 	    for(PersID id : Ids) {
-	    	corps = corps + id.getNom()+" "+ id.getPrenom()+"<br>";
+	    	corps.append(id.getNom()).append(" ").append(id.getPrenom()).append("<br>");
 	    }
 	    
-	    corps = corps + "<br>Veuillez v�rifier les informations de ces personnes.<br>Sportivement, <br>MyMoveForm";
+	    corps.append("<br>Veuillez v&eacute;rifier les informations de ces personnes.<br>Sportivement, <br>MyMoveForm");
 	    	
-	    content.setContent(corps, "text/html");
+	    content.setContent(corps.toString(), "text/html");
 	    	
 	    mimeMultipart.addBodyPart(content);
 

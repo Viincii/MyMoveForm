@@ -16,11 +16,11 @@ public class PersID {
 	}
 
 	public String getNom() {
-		return nom;
+		return normalizeString(nom);
 	}
 
 	public String getPrenom() {
-		return prenom;
+		return normalizeString(prenom);
 	}
 	
 
