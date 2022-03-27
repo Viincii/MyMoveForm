@@ -5,9 +5,9 @@ module com.example.mymoveforms {
     requires io;
     requires layout;
     requires org.apache.poi.poi;
-    requires mail;
-    requires activation;
     requires org.apache.poi.ooxml;
+    requires activation;
+    requires java.mail;
 
 
     opens com.mymovestudio.mymoveforms to javafx.fxml;

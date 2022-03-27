@@ -132,7 +132,7 @@ public class Controleur implements Initializable{
 				this.infos.setText("C'est fini! Tout c'est bien pass�! Les PDF sont dans le dossier donn� au dessus.");
 				if(bd.notifNecessaire()) {
 					this.infos.setText("Une notification a �t� envoy� par mail.");
-					this.bd.envoiNotif(mdp.getText(), "contact@mymovestudio.com");
+					this.bd.envoiNotif(mdp.getText(), "vinc.mignot@hotmail.fr"/*"contact@mymovestudio.com"*/);
 				}
 				this.bd.viderBd();
     		}
@@ -205,7 +205,7 @@ public class Controleur implements Initializable{
     		this.infos.setText("Fini!");
     		if(bd.notifNecessaire()) {
 				this.infos.setText("Une notification a �t� envoy� par mail.");
-				this.bd.envoiNotif(mdp.getText(), "contact@mymovestudio.com");
+				this.bd.envoiNotif(mdp.getText(), "vinc.mignot@hotmail.fr"/*"contact@mymovestudio.com"*/);
 			}
     		this.bd.viderBd();
     	}

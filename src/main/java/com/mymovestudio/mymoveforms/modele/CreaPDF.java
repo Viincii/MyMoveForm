@@ -64,7 +64,7 @@ public class CreaPDF {
 			ajoutePara(p.getEssai(), 380, 30,520, 9);
 		}
 		else { // Formulaire en pr�sentiel
-			canvas.addImageFittedIntoRectangle(ImageDataFactory.create("Images\\Pr�sentiel.png"), pageSize, false);
+			canvas.addImageFittedIntoRectangle(ImageDataFactory.create("Images\\Présentiel.png"), pageSize, false);
 			if(p.getNumAdh()!=null)
 				ajoutePara(p.getNumAdh(), 792, 505);
 			

@@ -183,16 +183,14 @@ public class EnvoiMails {
 	    message.setFrom(new InternetAddress(mail));
 	    message.addRecipients(Message.RecipientType.TO, destinataire);
 	    message.addRecipients(Message.RecipientType.CC, "inscriptions@mymovestudio.com");
-	    message.addRecipients(Message.RecipientType.CC, "sara@mymovestudio.com");
+	    //message.addRecipients(Message.RecipientType.CC, "sara@mymovestudio.com");
 	    
 	    transport = session.getTransport("smtp");
 	    transport.connect(mail, mdp);
-	    transport.sendMessage(message, new Address[] { new InternetAddress(destinataire),new InternetAddress("inscriptions@mymovestudio.com"),new InternetAddress("sara@mymovestudio.com")});
-	    
-	       
-	    if (transport != null) {
-	    	transport.close();
-	    }
+	    transport.sendMessage(message, new Address[] { new InternetAddress(destinataire),new InternetAddress("inscriptions@mymovestudio.com")/*,new InternetAddress("sara@mymovestudio.com")*/});
+
+
+		transport.close();
 	}
 	
 	
@@ -236,11 +234,9 @@ public class EnvoiMails {
 	    transport = session.getTransport("smtp");
 	    transport.connect(mail, mdp);
 	    transport.sendMessage(message, new Address[] { new InternetAddress(destinataire)});
-	    
-	       
-	    if (transport != null) {
-	    	transport.close();
-	    }
+
+
+		transport.close();
 	}
 	public void setObjet(String objet) {
 		this.objet = objet;
